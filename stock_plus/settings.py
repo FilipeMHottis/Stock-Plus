@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-from stock_plus.config import database
+from stock_plus.config import database, debug
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-3r*k*8_p8%ytse668a%y@+4(^dji16pcfhxxor&1seq(8mpah7"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = debug
 
 ALLOWED_HOSTS = []
 
@@ -108,9 +108,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+# Configure o idioma padrão da sua aplicação para o Português do Brasil
+LANGUAGE_CODE = "pt-br"
 
-TIME_ZONE = "UTC"
+# Configure o fuso horário padrão da sua aplicação para o Brasil (São Paulo)
+TIME_ZONE = "America/Sao_Paulo"
 
 USE_I18N = True
 
