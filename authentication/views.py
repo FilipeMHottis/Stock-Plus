@@ -1,15 +1,5 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate
-from rest_framework_simplejwt.tokens import RefreshToken
-from django.http import JsonResponse
-
-
-def getTokens(user):
-    refresh = RefreshToken.for_user(user)
-    return {
-        "refresh": str(refresh),
-        "access": str(refresh.access_token),
-    }
 
 
 def login(request):
@@ -22,8 +12,8 @@ def login(request):
         user = authenticate(username=username, password=password)
 
         if user is not None:
-            tokens = getTokens(user)
-            return JsonResponse(tokens)
+            print("User is authenticated")
+            return render(request, "login.html")
         else:
             return render(
                 request,

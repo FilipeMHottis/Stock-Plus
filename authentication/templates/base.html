@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
@@ -9,4 +10,5 @@
 <body>
     {% block content %}{% endblock %}
 </body>
+{% block scripts %}{% endblock %}
 </html>
