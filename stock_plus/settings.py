@@ -61,7 +61,7 @@ ROOT_URLCONF = "stock_plus.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        'DIRS': ['./stock/templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -147,8 +147,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = [
-    "authentication/static",
-    "core/static",
+    "stock/static",
 ]
 
 
