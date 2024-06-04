@@ -20,7 +20,7 @@ class Product(models.Model):
     quantity = models.IntegerField()
     value_defalt = models.DecimalField(decimal_places=2, max_digits=10)
     tags = models.ManyToManyField(Tag)
-    categories = models.ManyToManyField(Category)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     barcode = models.CharField(max_length=100, blank=True, null=True)
     image = models.ImageField(upload_to="products", blank=True, null=True)
 
