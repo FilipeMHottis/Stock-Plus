@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Create Product{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Create Product</h2>
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group{% if form.name.errors %} has-error{% endif %}">
+                    <label for="id_name">Name</label>
+                    <input type="text" class="form-control" id="id_name" name="name" value="{{ form.name.value }}">
+
+                    <label for="id_value_defalt">Price</label>
+                    <input type="text" class="form-control" id="id_value_defalt" name="value_defalt" value="{{ form.value_defalt.value }}">
+
+                    <label for="id_quantity">Stock</label>
+                    <input type="text" class="form-control" id="id_quantity" name="quantity" value="{{ form.quantity.value }}">
+
+                    <label for="id_tags">Tags</label>
+                    {% for tag in tags %}
+                    <input type="checkbox" id="id_tags" name="tags" value="{{ tag.id }}" {% if tag.checked %}checked{% endif %}> {{ tag.name }}<br>
+                    {% endfor %}
+
+                    <label for="id_category">Category</label>
+                    <select class="form-control" id="id_category" name="category">
+                        {% for category in categories %}
+                        <option value="{{ category.id }}" {% if category.selected %}selected{% endif %}>{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <label for="id_barcode">Bar Code</label>
+                    <input type="text" class="form-control" id="id_barcode" name="barcode" value="{{ form.barcode.value }}">
+
+                    <label for="id_image">Image</label>
+                    <input type="file" class="form-control" id="id_image" name="image" value="{{ form.image.value }}">
+                    <img src="{{ form.image.value }}" alt="image" width="100" height="100">
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
