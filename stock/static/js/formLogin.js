@@ -10,7 +10,7 @@ formLogin.addEventListener('submit', function (event) {
     const rememberMeCheckbox = document.querySelector('input[name="remember_me"]');
     const sessionOrLocal = rememberMeCheckbox.checked ? 'local' : 'session';
 
-    var storage = new Storage(sessionOrLocal);
+    const storage = new Storage(sessionOrLocal);
 
     fetch('/auth/token/', {
         method: 'POST',
