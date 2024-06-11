@@ -1,4 +1,4 @@
-import Storage from "./storage.js";
+import Storage from "./class/storage.js";
 
 const formLogin = document.querySelector('form');
 

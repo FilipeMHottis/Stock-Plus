@@ -1,13 +1,5 @@
-import Storage from './storage.js';
-import Token from './token.js';
-
-
-const getTokenStorage = () => {
-    const localToken = new Storage('local');
-    const sessionToken = new Storage('session');
-
-    return localToken || sessionToken;
-};
+import Token from './class/token.js';
+import getTokenStorage from './utils/getTokenStorage.js';
 
 const verifyAndRefreshToken = async () => {
     const storageInstance = getTokenStorage();
@@ -40,3 +32,5 @@ const verifyAndRefreshToken = async () => {
 
 setInterval(verifyAndRefreshToken, 60000);
 verifyAndRefreshToken();
+
+export default getTokenStorage;
