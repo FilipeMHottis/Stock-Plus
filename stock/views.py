@@ -1,6 +1,7 @@
 from core.models import Product, Tag, Category
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 
 
 def login(request):
@@ -24,7 +25,15 @@ def login(request):
 
 def products(request):
     products = Product.objects.all()
-    return render(request, "products.html", {"products": products})
+    user = User.objects.get(username="admin")
+    return render(
+        request,
+        "products.html",
+        {
+            "products": products,
+            "user": user,
+        },
+    )
 
 
 def product_create(request):

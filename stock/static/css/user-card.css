@@ -1,0 +1,10 @@
+.user-card {
+    width: 120px; /* Define a largura do card */
+    position: fixed; /* Fixa a posição do card na página */
+    top: 20px; /* Ajuste a distância do topo conforme necessário */
+    right: 20px; /* Ajuste a distância da direita conforme necessário */
+    border: 1px solid #ddd; /* Borda ao redor do card */
+    background-color: white; /* Cor de fundo branca */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra para um efeito sutil */
+    z-index: 1000; /* Garante que o card fique acima de outros elementos */
+}

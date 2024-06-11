@@ -3,17 +3,29 @@
 
 {% block title %}Products{% endblock %}
 
+{%block styles%}
+<link rel="stylesheet" href="{% static 'css/user-card.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <h2>Products</h2>
 
-            <a href="{% url 'product_create' %}" class="btn btn-primary">Create Product</a>
-            <a href="{% url 'tag_create' %}" class="btn btn-primary">Create Tag</a>
-            <a href="{% url 'category_create' %}" class="btn btn-primary">Create Category</a>
+            <!-- User -->
+            <div class="user-card card text-center">
+                <div class="card-body">
+                    <img src="{% static 'img/user.png' %}" alt="User" class="rounded-circle img-fluid mb-2" width="50" height="50">
+                    <h6 class="card-title mb-0">{{ user.username }}</h6>
+                </div>
+            </div>
 
-            <table class="table">
+            <a href="{% url 'product_create' %}" class="btn btn-primary mt-3">Create Product</a>
+            <a href="{% url 'tag_create' %}" class="btn btn-primary mt-3">Create Tag</a>
+            <a href="{% url 'category_create' %}" class="btn btn-primary mt-3">Create Category</a>
+
+            <table class="table mt-3">
                 <thead>
                     <tr>
                         <th>Product</th>
@@ -35,7 +47,6 @@
     </div>
 </div>
 {% endblock %}
-
 
 {% block scripts %}
 <script type="module" src="{% static 'js/authTokenHandler.js' %}"></script>
