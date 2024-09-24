@@ -3,7 +3,7 @@ from datetime import datetime
 from peewee import CharField, BooleanField, DateTimeField
 
 
-class User(BaseModel):
+class User_Model(BaseModel):
     # Field Name: name
     name = CharField(max_length=255, null=False)  # Required (cannot be null)
 
