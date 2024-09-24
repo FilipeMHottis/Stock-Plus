@@ -1,7 +1,7 @@
 import peewee
 from config import Config
 
-# Mapeamento de tipos de banco de dados para as respectivas classes Peewee
+# Mapping of database types to their respective Peewee classes
 DATABASES = {
     "postgres": peewee.PostgresqlDatabase,
     "sqlite": peewee.SqliteDatabase,
@@ -9,7 +9,7 @@ DATABASES = {
 }
 
 
-# Função para obter a configuração do banco de dados
+# Function to get the database configuration
 def get_database():
     db_type = Config.DB["database"]
     if db_type not in DATABASES:
@@ -17,11 +17,11 @@ def get_database():
 
     db_class = DATABASES[db_type]
 
-    # Caso seja um sqlite, não é necessário passar usuário e senha
+    # If the database type is sqlite, no need to pass user and password
     if db_type == "sqlite":
         return db_class(Config.DB["database"])
 
-    # Caso contrário, passamos usuário e senha
+    # Otherwise, we pass user and password
     return db_class(
         Config.DB["database"],
         user=Config.DB["user"],
@@ -31,11 +31,11 @@ def get_database():
     )
 
 
-# Obter a instância do banco de dados
+# Get the database instance
 db = get_database()
 
 
-# Modelo base
+# Base model class
 class BaseModel(peewee.Model):
     class Meta:
         database = db
