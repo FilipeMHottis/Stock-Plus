@@ -1,8 +1,9 @@
 from fastapi import FastAPI
+from .startup import create_db
 
-app = FastAPI()
+app = FastAPI(lifespan=create_db)
 
 
 @app.get("/")
-def read_root():
-    return {"message": "Welcome to the FastAPI JWT App"}
+async def root():
+    return {"message": "Hello World"}
