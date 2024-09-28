@@ -1,4 +1,4 @@
-from config import Config
+from .config import Config
 from passlib.context import CryptContext
 from datetime import datetime, timedelta, timezone
 import jwt

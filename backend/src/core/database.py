@@ -1,5 +1,5 @@
 import peewee
-from config import Config
+from .config import Config
 
 # Mapping of database types to their respective Peewee classes
 DATABASES = {
