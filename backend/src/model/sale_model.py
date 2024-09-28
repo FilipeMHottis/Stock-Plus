@@ -1,10 +1,9 @@
-from ..core.database import BaseModel
+from ..core.database import BaseModel, db
 from ..core.types import ProductInfo, SaleInfo
 
 from .user_model import User
 from .payment_method_model import PaymentMethod
 from .product_model import Product
-from .sale_product_model import SaleProduct
 
 from peewee import (
     DateTimeField,
@@ -31,12 +30,20 @@ class Sale(BaseModel):
         null=False,
     )
 
+    class Meta:
+        database = db
+        table_name = "sales"
+
     def get_complete_sale(self) -> SaleInfo:
         """
         Returns a detailed sale object with information about the user,
         payment method, and products.
         """
+
+        from .sale_product_model import SaleProduct  # Mova o import aqui
+
         # Fetch related products with quantities in the sale
+
         sale_products = (
             SaleProduct.select(SaleProduct, Product)
             .join(Product)

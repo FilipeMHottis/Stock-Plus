@@ -1,4 +1,4 @@
-from ..core.database import BaseModel
+from ..core.database import BaseModel, db
 from datetime import datetime
 from peewee import CharField, BooleanField, DateTimeField
 
@@ -11,3 +11,7 @@ class User(BaseModel):
     role = CharField(max_length=20, default="cashier")
     is_active = BooleanField(default=True)
     created_at = DateTimeField(default=datetime.now)
+
+    class Meta:
+        database = db
+        table_name = "users"

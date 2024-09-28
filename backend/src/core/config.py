@@ -19,6 +19,6 @@ class Config:
     admin_user = {
         "name": os.getenv("ADMIN_NAME", "admin"),
         "username": os.getenv("ADMIN_USER", "admin"),
-        "user_email": os.getenv("ADMIN_EMAIL", "admin@admin.com"),
+        "email": os.getenv("ADMIN_EMAIL", "admin@admin.com"),
         "password": os.getenv("ADMIN_PASSWORD", "admin"),
     }

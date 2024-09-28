@@ -1,10 +1,18 @@
-from ..core.database import BaseModel
-from .sale_model import Sale
+from ..core.database import BaseModel, db
 from .product_model import Product
-from peewee import IntegerField, ForeignKeyField
+from .sale_model import Sale  # Importação de Sale deve vir aqui
+
+from peewee import (
+    ForeignKeyField,
+    IntegerField,
+)
 
 
 class SaleProduct(BaseModel):
-    sale_id = ForeignKeyField(Sale, backref="sale_products", null=False)
-    product_id = ForeignKeyField(Product, backref="product_sales", null=False)
+    sale_id = ForeignKeyField(Sale, backref="products", null=False)
+    product_id = ForeignKeyField(Product, backref="sales", null=False)
     quantity = IntegerField(null=False)
+
+    class Meta:
+        database = db
+        table_name = "sale_products"

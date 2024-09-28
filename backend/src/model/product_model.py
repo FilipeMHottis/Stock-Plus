@@ -1,4 +1,4 @@
-from ..core.database import BaseModel
+from ..core.database import BaseModel, db
 from datetime import datetime
 from peewee import CharField, IntegerField, DecimalField, DateTimeField
 
@@ -12,3 +12,7 @@ class Product(BaseModel):
     custom_code = CharField(max_length=50, unique=True, null=True)
     image_url = CharField(max_length=255, null=True)
     created_at = DateTimeField(default=datetime.now)
+
+    class Meta:
+        database = db
+        table_name = "products"
