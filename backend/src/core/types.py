@@ -1,6 +1,17 @@
 from typing import TypedDict, List
 
 
+class UserType(TypedDict):
+    user_id: int
+    name: str
+    username: str
+    email: str
+    password_hash: str
+    role: str
+    is_active: bool
+    created_at: str
+
+
 class ProductInfo(TypedDict):
     product_id: int
     product_name: str
