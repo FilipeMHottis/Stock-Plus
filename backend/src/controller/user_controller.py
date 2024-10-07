@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from ..service.user_servise import UserService
 from pydantic import BaseModel
@@ -15,13 +15,13 @@ class Login(BaseModel):
 def login(login: Login):
     status_detail = UserService.login(login.username, login.password)
 
-    if status_detail["status"] != 200:
-        raise HTTPException(
-            status_code=status_detail["status"],
-            detail=status_detail["detail"],
-        )
+    data = (
+        {"token": status_detail["data"]}
+        if status_detail["data"]
+        else {"error": status_detail["detail"]}
+    )
 
     return JSONResponse(
         status_code=status_detail["status"],
-        content={"token": status_detail["data"]},
+        content=data,
     )
