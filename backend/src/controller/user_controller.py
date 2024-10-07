@@ -1,29 +1,27 @@
-from ..service.user_servise import UserService  # Corrigido o nome do serviço
-from ..core.types import UserType
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import JSONResponse
+from ..service.user_servise import UserService
+from pydantic import BaseModel
 
 router = APIRouter()
 
 
-@router.get("/users")
-def get_users():
-    try:
-        users = (
-            UserService.get_users()
-        )
-        return users
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+class Login(BaseModel):
+    username: str
+    password: str
 
 
-@router.get("/users/{user_id}")
-def get_user(user_id: int):
-    try:
-        user = UserService.get_user(
-            user_id
+@router.post("/login")
+def login(login: Login):
+    status_detail = UserService.login(login.username, login.password)
+
+    if status_detail["status"] != 200:
+        raise HTTPException(
+            status_code=status_detail["status"],
+            detail=status_detail["detail"],
         )
-        if not user:
-            raise HTTPException(status_code=404, detail="User not found")
-        return user
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+
+    return JSONResponse(
+        status_code=status_detail["status"],
+        content={"token": status_detail["data"]},
+    )
